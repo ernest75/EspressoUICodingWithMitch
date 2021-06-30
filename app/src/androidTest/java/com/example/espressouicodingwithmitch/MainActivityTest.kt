@@ -16,7 +16,7 @@ class MainActivityTest{
     fun testActivityInView() {
         ActivityScenario.launch(MainActivity::class.java)
 
-        onView(withId(R.id.main)).check(matches(isDisplayed()))
+        onView(withId(R.id.main)).check(matches(withEffectiveVisibility(Visibility.VISIBLE)))
     }
 
     @Test
