@@ -5,6 +5,6 @@ data class Movie (
     val title: String,
     val image: String,
     val description: String,
-    val directors: ArrayList<String>?,
-    val star_actors: ArrayList<String>?
+    val directors: ArrayList<String>,
+    val star_actors: ArrayList<String>
 )
