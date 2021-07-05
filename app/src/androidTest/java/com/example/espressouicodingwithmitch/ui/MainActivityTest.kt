@@ -20,6 +20,7 @@ import androidx.test.espresso.matcher.ViewMatchers.*
 import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.espressouicodingwithmitch.R
 import com.example.espressouicodingwithmitch.ui.ImageViewHasDrawableMatcher.hasDrawable
+import com.example.espressouicodingwithmitch.ui.MainActivity.Companion.buildToastMessage
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matcher
 import org.junit.Rule
@@ -35,7 +36,7 @@ class MainActivityTest{
     fun showDialogCaptureNameInput() {
         //Given
         val activityScenario = ActivityScenario.launch(MainActivity::class.java)
-        val EXPECTED_NAME = "Ernest"
+        val NAME = "Ernest"
 
         //Execute and verify
         onView(withId(R.id.button_launch_dialog)).perform(click())
@@ -44,16 +45,24 @@ class MainActivityTest{
 
         onView(withText(R.string.text_ok)).perform(click())
 
+        // make sure dialog is still visible (can't click ok without entering a name)
         onView(withText(R.string.text_enter_name)).check(matches(isDisplayed()))
 
         //Enter input
-        onView(withId(R.id.md_input_message)).perform(typeText(EXPECTED_NAME))
+        onView(withId(R.id.md_input_message)).perform(typeText(NAME))
 
         onView(withText(R.string.text_ok)).perform(click())
 
         onView(withText(R.string.text_enter_name)).check(doesNotExist())
 
-        onView(withId(R.id.text_name)).check(matches(withText(EXPECTED_NAME)))
+        onView(withId(R.id.text_name)).check(matches(withText(NAME)))
+
+        //test toast
+        onView(withText(buildToastMessage(NAME)))
+            .inRoot(ToastMatcher())
+            .check(matches(isDisplayed()))
 
     }
+
+
 }
