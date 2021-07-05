@@ -72,4 +72,9 @@ dependencies {
     debugImplementation "androidx.fragment:fragment-testing:$fragment_version"
     implementation "androidx.fragment:fragment:$fragment_version"
 
+    // material dialogs
+    def matieral_dialogs_version = "3.3.0"
+    implementation "com.afollestad.material-dialogs:core:$matieral_dialogs_version"
+    implementation "com.afollestad.material-dialogs:input:$matieral_dialogs_version"
+
 }
