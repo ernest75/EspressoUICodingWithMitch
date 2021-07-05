@@ -14,7 +14,7 @@
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         android:layout_marginTop="30dp"
-        android:text="@string/text_select_image_from_gallery"
+        android:text="@string/text_make_a_picture"
         android:textColor="#000"
         android:textSize="25sp"
         android:layout_marginBottom="20dp"

@@ -2,14 +2,16 @@ package com.example.espressouicodingwithmitch.ui
 
 import android.app.Activity
 import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.bumptech.glide.Glide
 import com.example.espressouicodingwithmitch.databinding.ActivityMainBinding
 
-val GALLERY_REQUEST_CODE = 1234
+const val REQUEST_IMAGE_CAPTURE = 1234
+const val KEY_IMAGE_DATA = "data"
 
 class MainActivity : AppCompatActivity(){
 
@@ -17,38 +19,34 @@ class MainActivity : AppCompatActivity(){
 
     private lateinit var binding: ActivityMainBinding
 
+    var resultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
+        if (result.resultCode == Activity.RESULT_OK) {
+            // There are no request codes
+            val data: Intent? = result.data
+            Log.d(TAG, "RESULT_OK")
+            data?.extras.let{ extras ->
+                if (extras != null && extras.containsKey(KEY_IMAGE_DATA)) {
+                    val imageBitmap = extras[KEY_IMAGE_DATA] as Bitmap?
+                    binding.image.setImageBitmap(imageBitmap)
+                    Log.d(TAG, "REQUEST_IMAGE_CAPTURE detected.")
+                }
+            }
+        }
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
 
         binding.buttonOpenGallery.setOnClickListener {
-            pickFromGallery()
+            dispatchCameraIntent()
         }
     }
 
-    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
-        super.onActivityResult(requestCode, resultCode, data)
-        if(resultCode == Activity.RESULT_OK){
-            Log.d(TAG, "RESULT_OK")
-            when(requestCode){
-
-                GALLERY_REQUEST_CODE -> {
-                    Log.d(TAG, "GALLERY_REQUEST_CODE detected.")
-                    data?.data?.let { uri ->
-                        Log.d(TAG, "URI: $uri")
-                        Glide.with(this)
-                            .load(uri)
-                            .into(binding.image)
-                    }
-                }
-            }
-        }
-    }
-
-    private fun pickFromGallery() {
-        val intent = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
-        startActivityForResult(intent, GALLERY_REQUEST_CODE)
+    private fun dispatchCameraIntent() {
+        val intent = Intent(MediaStore.ACTION_IMAGE_CAPTURE)
+        resultLauncher.launch(intent)
     }
 
 }
