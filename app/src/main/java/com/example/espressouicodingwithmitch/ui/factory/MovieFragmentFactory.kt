@@ -4,6 +4,7 @@ import androidx.fragment.app.FragmentFactory
 import com.bumptech.glide.request.RequestOptions
 import com.example.espressouicodingwithmitch.ui.DirectorsFragment
 import com.example.espressouicodingwithmitch.ui.MovieDetailFragment
+import com.example.espressouicodingwithmitch.ui.MovieListFragment
 import com.example.espressouicodingwithmitch.ui.StarActorsFragment
 import com.example.espressouicodingwithmitch.ui.data.source.MoviesDataSource
 
@@ -18,6 +19,14 @@ class MovieFragmentFactory(
     override fun instantiate(classLoader: ClassLoader, className: String) =
 
         when (className) {
+
+            MovieListFragment::class.java.name -> {
+                if (moviesDataSource != null) {
+                    MovieListFragment(moviesDataSource)
+                } else {
+                    super.instantiate(classLoader, className)
+                }
+            }
 
             MovieDetailFragment::class.java.name -> {
                 if (requestOptions != null
