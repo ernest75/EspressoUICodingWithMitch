@@ -24,7 +24,6 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.bumptech.glide.request.RequestOptions
 import com.example.espressouicodingwithmitch.R
 import com.example.espressouicodingwithmitch.ui.DirectorsFragment.Companion.stringBuilderForDirectors
-import com.example.espressouicodingwithmitch.ui.ImageViewHasDrawableMatcher.hasDrawable
 import com.example.espressouicodingwithmitch.ui.StarActorsFragment.Companion.stringBuilderForStarActors
 import com.example.espressouicodingwithmitch.ui.data.Movie
 import com.example.espressouicodingwithmitch.ui.data.source.MoviesDataSource
