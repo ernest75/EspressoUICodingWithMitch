@@ -1,66 +1,52 @@
 package com.example.espressouicodingwithmitch.ui
 
-import android.app.Activity
-import android.content.Intent
-import android.graphics.Bitmap
 import android.os.Bundle
-import android.provider.MediaStore
-import android.util.Log
-import android.widget.Toast
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.appcompat.app.AppCompatActivity
-import com.afollestad.materialdialogs.MaterialDialog
-import com.afollestad.materialdialogs.input.input
+import com.bumptech.glide.request.RequestOptions
 import com.example.espressouicodingwithmitch.R
-import com.example.espressouicodingwithmitch.databinding.ActivityMainBinding
+import com.example.espressouicodingwithmitch.ui.data.source.MoviesDataSource
+import com.example.espressouicodingwithmitch.ui.data.source.MoviesRemoteDataSource
+import com.example.espressouicodingwithmitch.ui.factory.MovieFragmentFactory
 
-class MainActivity : AppCompatActivity(){
+class MainActivity : AppCompatActivity() {
 
-    private val TAG: String = "AppDebug"
-
-    private lateinit var binding: ActivityMainBinding
-
+    // dependencies (typically would be injected with dagger)
+    lateinit var requestOptions: RequestOptions
+    lateinit var moviesDataSource: MoviesDataSource
 
     override fun onCreate(savedInstanceState: Bundle?) {
+        initDependencies()
+        supportFragmentManager.fragmentFactory = MovieFragmentFactory(
+            requestOptions,
+            moviesDataSource
+            )
         super.onCreate(savedInstanceState)
-        binding = ActivityMainBinding.inflate(layoutInflater)
-        setContentView(binding.root)
+        setContentView(R.layout.activity_main)
 
-        binding.buttonLaunchDialog.setOnClickListener {
-            showDialog()
+        init()
+    }
+
+    private fun init(){
+        if(supportFragmentManager.fragments.size == 0){
+            val movieId = 1
+            val bundle = Bundle()
+            bundle.putInt("movie_id", movieId)
+            supportFragmentManager.beginTransaction()
+                .replace(R.id.container, MovieDetailFragment::class.java, bundle)
+                .commit()
         }
     }
 
-    private fun showDialog() {
-        MaterialDialog(this)
-            .show {
-                input(
-                    waitForPositiveButton = true,
-                    allowEmpty = false
-                ) { dialog, name ->
-                    setNameToTextView(name.toString())
-                    showToast(buildToastMessage(name.toString()))
+    private fun initDependencies(){
 
-                }
-                title(R.string.text_enter_name)
-                positiveButton(R.string.text_ok)
-            }
+        // glide
+        requestOptions = RequestOptions
+            .placeholderOf(R.drawable.default_image)
+            .error(R.drawable.default_image)
+
+        // Data Source
+        moviesDataSource = MoviesRemoteDataSource()
     }
-
-    private fun setNameToTextView(name: String) {
-        binding.textName.text = name
-    }
-
-    private fun showToast(message: String){
-        Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
-    }
-
-    companion object{
-        fun buildToastMessage(name: String): String{
-            return "Your name is $name."
-        }
-    }
-
 
 }
 
