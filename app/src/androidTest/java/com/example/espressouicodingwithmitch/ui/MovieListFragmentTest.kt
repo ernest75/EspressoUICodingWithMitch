@@ -12,10 +12,12 @@ import androidx.fragment.app.testing.launchFragmentInContainer
 import androidx.test.core.app.ActivityScenario
 import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.Espresso.pressBack
+import androidx.test.espresso.IdlingRegistry
 import androidx.test.espresso.action.ViewActions.click
 import androidx.test.espresso.action.ViewActions.typeText
 import androidx.test.espresso.assertion.ViewAssertions.doesNotExist
 import androidx.test.espresso.assertion.ViewAssertions.matches
+import androidx.test.espresso.base.IdlingResourceRegistry
 import androidx.test.espresso.contrib.RecyclerViewActions.actionOnItemAtPosition
 import androidx.test.espresso.intent.Intents.intended
 import androidx.test.espresso.intent.Intents.intending
@@ -30,10 +32,13 @@ import com.example.espressouicodingwithmitch.ui.data.FakeMovieData
 import com.example.espressouicodingwithmitch.ui.data.Movie
 import com.example.espressouicodingwithmitch.ui.data.source.MoviesDataSource
 import com.example.espressouicodingwithmitch.ui.factory.MovieFragmentFactory
+import com.example.espressouicodingwithmitch.ui.util.EspressoIdlingResource
 import io.mockk.every
 import io.mockk.mockk
 import org.hamcrest.CoreMatchers.not
 import org.hamcrest.Matcher
+import org.junit.After
+import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
 import org.junit.runner.RunWith
@@ -46,6 +51,17 @@ class MovieListFragmentTest{
 
     val LIST_ITEM_IN_TEST = 4
     val MOVIE_IN_TEST = FakeMovieData.movies[LIST_ITEM_IN_TEST]
+
+    @Before
+    fun registerIdlingResource(){
+        IdlingRegistry.getInstance().register(EspressoIdlingResource.countingIdlingResource)
+    }
+
+    @After
+    fun unregisterIdlingResource(){
+        IdlingRegistry.getInstance().unregister(EspressoIdlingResource.countingIdlingResource)
+
+    }
 
     /**
      * Recyclerview comes into view
