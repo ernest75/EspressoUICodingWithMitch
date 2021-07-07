@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.example.espressouicodingwithmitch.R
 import com.example.espressouicodingwithmitch.ui.data.Movie
+import com.example.espressouicodingwithmitch.ui.util.EspressoIdlingResource
 import kotlinx.android.synthetic.main.layout_movie_list_item.view.*
 
 class MoviesListAdapter(private val interaction: Interaction? = null) :
@@ -53,7 +54,11 @@ class MoviesListAdapter(private val interaction: Interaction? = null) :
     }
 
     fun submitList(list: List<Movie>) {
-        differ.submitList(list)
+        EspressoIdlingResource.increment()
+        val dataCommitCallback = Runnable {
+           EspressoIdlingResource.decrement()
+        }
+        differ.submitList(list,dataCommitCallback)
     }
 
     class MovieViewHolder
