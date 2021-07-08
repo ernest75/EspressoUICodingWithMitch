@@ -5,9 +5,9 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.request.RequestOptions
 import com.example.espressouicodingwithmitch.R
-import com.example.espressouicodingwithmitch.ui.data.source.MoviesDataSource
-import com.example.espressouicodingwithmitch.ui.data.source.MoviesRemoteDataSource
-import com.example.espressouicodingwithmitch.ui.factory.MovieFragmentFactory
+import com.example.espressouicodingwithmitch.data.source.MoviesDataSource
+import com.example.espressouicodingwithmitch.data.source.MoviesRemoteDataSource
+import com.example.espressouicodingwithmitch.factory.MovieFragmentFactory
 import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity(), UICommunicationListener {

@@ -1,4 +1,4 @@
-package com.example.espressouicodingwithmitch.ui.factory
+package com.example.espressouicodingwithmitch.factory
 
 import androidx.fragment.app.FragmentFactory
 import com.bumptech.glide.request.RequestOptions
@@ -6,7 +6,7 @@ import com.example.espressouicodingwithmitch.ui.DirectorsFragment
 import com.example.espressouicodingwithmitch.ui.MovieDetailFragment
 import com.example.espressouicodingwithmitch.ui.MovieListFragment
 import com.example.espressouicodingwithmitch.ui.StarActorsFragment
-import com.example.espressouicodingwithmitch.ui.data.source.MoviesDataSource
+import com.example.espressouicodingwithmitch.data.source.MoviesDataSource
 
 
 class MovieFragmentFactory(

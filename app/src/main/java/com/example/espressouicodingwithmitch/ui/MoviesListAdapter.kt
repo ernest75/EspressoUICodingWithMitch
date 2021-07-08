@@ -8,8 +8,8 @@ import androidx.recyclerview.widget.AsyncListDiffer
 import androidx.recyclerview.widget.DiffUtil
 import com.bumptech.glide.Glide
 import com.example.espressouicodingwithmitch.R
-import com.example.espressouicodingwithmitch.ui.data.Movie
-import com.example.espressouicodingwithmitch.ui.util.EspressoIdlingResource
+import com.example.espressouicodingwithmitch.data.Movie
+import com.example.espressouicodingwithmitch.util.EspressoIdlingResource
 import kotlinx.android.synthetic.main.layout_movie_list_item.view.*
 
 class MoviesListAdapter(private val interaction: Interaction? = null) :

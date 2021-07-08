@@ -1,7 +1,7 @@
-package com.example.espressouicodingwithmitch.ui.data.source
+package com.example.espressouicodingwithmitch.data.source
 
-import com.example.espressouicodingwithmitch.ui.data.FakeMovieData
-import com.example.espressouicodingwithmitch.ui.data.Movie
+import com.example.espressouicodingwithmitch.data.FakeMovieData
+import com.example.espressouicodingwithmitch.data.Movie
 
 
 class MoviesRemoteDataSource: MoviesDataSource {

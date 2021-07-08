@@ -10,10 +10,10 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.codingwithmitch.espressouitestexamples.util.TopSpacingItemDecoration
 import com.example.espressouicodingwithmitch.R
-import com.example.espressouicodingwithmitch.ui.data.FakeMovieData.FAKE_NETWORK_DELAY
-import com.example.espressouicodingwithmitch.ui.data.Movie
-import com.example.espressouicodingwithmitch.ui.data.source.MoviesDataSource
-import com.example.espressouicodingwithmitch.ui.util.EspressoIdlingResource
+import com.example.espressouicodingwithmitch.data.FakeMovieData.FAKE_NETWORK_DELAY
+import com.example.espressouicodingwithmitch.data.Movie
+import com.example.espressouicodingwithmitch.data.source.MoviesDataSource
+import com.example.espressouicodingwithmitch.util.EspressoIdlingResource
 import kotlinx.android.synthetic.main.fragment_movie_list.*
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.GlobalScope
