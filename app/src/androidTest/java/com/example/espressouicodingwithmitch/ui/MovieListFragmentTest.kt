@@ -15,6 +15,7 @@ import androidx.test.internal.runner.junit4.AndroidJUnit4ClassRunner
 import com.example.espressouicodingwithmitch.R
 import com.example.espressouicodingwithmitch.data.FakeMovieData
 import com.example.espressouicodingwithmitch.util.EspressoIdlingResource
+import com.example.espressouicodingwithmitch.util.IdlingResourceRule
 import org.junit.After
 import org.junit.Before
 import org.junit.Rule
@@ -26,6 +27,9 @@ class MovieListFragmentTest{
 
     @get:Rule
     val activityRule = ActivityScenarioRule(MainActivity::class.java)
+
+    @get:Rule
+    val idlingResourceRule = IdlingResourceRule()
 
     val LIST_ITEM_IN_TEST = 4
     val MOVIE_IN_TEST = FakeMovieData.movies[LIST_ITEM_IN_TEST]
