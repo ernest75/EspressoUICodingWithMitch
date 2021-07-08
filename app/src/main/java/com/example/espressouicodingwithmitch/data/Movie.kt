@@ -1,4 +1,4 @@
-package com.example.espressouicodingwithmitch.ui.data
+package com.example.espressouicodingwithmitch.data
 
 data class Movie (
     val id: Int,

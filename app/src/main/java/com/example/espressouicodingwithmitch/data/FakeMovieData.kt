@@ -1,4 +1,4 @@
-package com.example.espressouicodingwithmitch.ui.data
+package com.example.espressouicodingwithmitch.data
 
 
 object FakeMovieData {

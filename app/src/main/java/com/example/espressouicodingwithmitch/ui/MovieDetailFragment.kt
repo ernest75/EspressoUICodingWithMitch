@@ -8,8 +8,8 @@ import androidx.fragment.app.Fragment
 import com.bumptech.glide.Glide
 import com.bumptech.glide.request.RequestOptions
 import com.example.espressouicodingwithmitch.R
-import com.example.espressouicodingwithmitch.ui.data.Movie
-import com.example.espressouicodingwithmitch.ui.data.source.MoviesDataSource
+import com.example.espressouicodingwithmitch.data.Movie
+import com.example.espressouicodingwithmitch.data.source.MoviesDataSource
 import kotlinx.android.synthetic.main.fragment_movie_detail.*
 
 

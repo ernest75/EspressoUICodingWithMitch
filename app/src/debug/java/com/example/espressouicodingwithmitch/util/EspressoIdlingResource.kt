@@ -1,4 +1,4 @@
-package com.example.espressouicodingwithmitch.ui.util
+package com.example.espressouicodingwithmitch.util
 
 import androidx.test.espresso.idling.CountingIdlingResource
 
